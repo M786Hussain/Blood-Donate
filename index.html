@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blood Group Compatibility</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      
+    }
+
+    .container {
+      background-image: url(blood.jpg);
+      background-repeat: no-repeat;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 20px 30px;
+      width: 300px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      margin-bottom: 15px;
+    }
+
+    button {
+      background: #4caf50;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Blood Group Matcher</h1>
+    <input type="text" id="bloodGroup" placeholder="Enter your blood group">
+    <button onclick="findMatches()">Find Compatible Groups</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function findMatches() {
+      const bloodGroup = document.getElementById('bloodGroup').value.trim().toUpperCase();
+      const result = document.getElementById('result');
+
+      // Blood group compatibility
+      const compatibility = {
+        'A+': ['A+', 'A-', 'O+', 'O-'],
+        'A-': ['A-', 'O-'],
+        'B+': ['B+', 'B-', 'O+', 'O-'],
+        'B-': ['B-', 'O-'],
+        'AB+': ['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'],
+        'AB-': ['A-', 'B-', 'AB-', 'O-'],
+        'O+': ['O+', 'O-'],
+        'O-': ['O-']
+      };
+
+      // Validate input and find matches
+      if (compatibility[bloodGroup]) {
+        result.textContent = `Compatible blood groups: ${compatibility[bloodGroup].join(', ')}`;
+      } else {
+        result.textContent = 'Invalid blood group entered. Please try again.';
+      }
+    }
+  </script>
+</body>
+</html>
